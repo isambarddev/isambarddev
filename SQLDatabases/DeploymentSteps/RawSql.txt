@@ -1,0 +1,41 @@
+— Just change the version number and create the folder in
+
+— B:\sqlbackups\ARM-PRD-SQL-13
+
+— Run this and all the backups will be created in the right place.
+
+DECLARE @Version NVARCHAR(MAX)
+
+SET @Version = ‘1.25.3’
+
+— Nothing to change below here
+
+DECLARE @Web NVARCHAR(MAX)
+
+DECLARE @Session NVARCHAR(MAX)
+
+DECLARE @master NVARCHAR(MAX)
+
+DECLARE @core NVARCHAR(MAX)
+
+DECLARE @integration NVARCHAR(MAX)
+
+SET @Web = N’B:\sqlbackups\ARM-PRD-SQL-14\’ + @Version + N’\web.bak’
+
+SET @Session = N’B:\sqlbackups\ARM-PRD-SQL-14\’ + @Version + N’\sessions.bak’
+
+SET @master = N’B:\sqlbackups\ARM-PRD-SQL-14\’ + @Version + N’\master.bak’
+
+SET @core = N’B:\sqlbackups\ARM-PRD-SQL-14\’ + @Version + N’\core.bak’
+
+SET @integration = N’B:\sqlbackups\ARM-PRD-SQL-14\’ + @Version + N’\integration.bak’
+
+–BACKUP DATABASE [ypo_live_Integration_Nav] TO  DISK = @integration  WITH NOFORMAT, NOINIT,  NAME = N’ypo_live_Integration_Nav-Full Database Backup’, SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+–BACKUP DATABASE [ypo_live_Sitecore.Master] TO  DISK = @master WITH NOFORMAT, NOINIT,  NAME = N’client_live_Sitecore.Master-Full Database Backup’, SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+–BACKUP DATABASE [ypo_live_Sitecore.Web] TO  DISK = @Web WITH NOFORMAT, NOINIT,  NAME = N’client_live_Sitecore.Web-Full Database Backup’, SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+–BACKUP DATABASE [ypo_live_Sitecore.Core] TO  DISK = @core WITH NOFORMAT, NOINIT,  NAME = N’client_live_Sitecore.Core-Full Database Backup’, SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+BACKUP DATABASE [ypo_live_Sitecore.Sessions] TO  DISK = @Session WITH NOFORMAT, NOINIT,  NAME = N’client_live_Sitecore.Sessions-Full Database Backup’, SKIP, NOREWIND, NOUNLOAD,  STATS = 10
